@@ -1,0 +1,117 @@
+<!-- templates/submit.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Contract Report</title>
+</head>
+<body>
+    <h1>Submit Contract Report</h1>
+    <form action="/submit" method="POST">
+        <h3>General Report Information</h3>
+        <label for="project_number">TAD Project Number:</label>
+        <input type="text" id="project_number" name="project_number" required><br><br>
+
+        <label for="contractor_name">Prime Contractor Name:</label>
+        <input type="text" id="contractor_name" name="contractor_name" required><br><br>
+
+        <label for="contract_number">Contract Number:</label>
+        <input type="text" id="contract_number" name="contract_number" required><br><br>
+
+        <label for="award_date">Contract Award Date:</label>
+        <input type="date" id="award_date" name="award_date" required><br><br>
+
+        <label for="original_amount">Original Contract Amount ($):</label>
+        <input type="number" id="original_amount" name="original_amount" step="0.01" required><br><br>
+
+        <label for="revised_amount">Revised Contract Amount ($):</label>
+        <input type="number" id="revised_amount" name="revised_amount" step="0.01"><br><br>
+
+        <label for="committed_dbe">Committed DBE (%):</label>
+        <input type="number" id="committed_dbe" name="committed_dbe" step="0.01" required><br><br>
+
+        <label for="report_date">Date Report Prepared/Revised:</label>
+        <input type="date" id="report_date" name="report_date" required><br><br>
+
+        <label for="final_report">Final Report (Yes/No):</label>
+        <select id="final_report" name="final_report">
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select><br><br>
+
+        <h3>Payment Details</h3>
+        <!-- Payment rows -->
+        <div id="payment-rows">
+            <div class="payment-row">
+                <h4>Payment Row 1</h4>
+                <label for="vendor_name_0">Business/Vendor Name:</label>
+                <input type="text" id="vendor_name_0" name="vendor_name_0"><br><br>
+
+                <label for="contract_type_0">Type of Contract or Agreement:</label>
+                <input type="text" id="contract_type_0" name="contract_type_0"><br><br>
+
+                <label for="original_amount_0">Original Contract Amount ($):</label>
+                <input type="number" id="original_amount_0" name="original_amount_0" step="0.01"><br><br>
+
+                <label for="award_date_0">Date of Award/Commitment:</label>
+                <input type="date" id="award_date_0" name="award_date_0"><br><br>
+
+                <label for="certified_dbe_0">Certified DBE (Yes/No):</label>
+                <select id="certified_dbe_0" name="certified_dbe_0">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br><br>
+
+                <label for="paid_this_period_0">Amount Paid this Period ($):</label>
+                <input type="number" id="paid_this_period_0" name="paid_this_period_0" step="0.01"><br><br>
+
+                <label for="paid_to_date_0">Amount Paid to Date ($):</label>
+                <input type="number" id="paid_to_date_0" name="paid_to_date_0" step="0.01"><br><br>
+            </div>
+        </div>
+
+        <!-- Add more rows button -->
+        <button type="button" id="add-row-btn">Add Another Payment Row</button><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        let rowCount = 1;
+        document.getElementById('add-row-btn').addEventListener('click', function () {
+            const paymentRows = document.getElementById('payment-rows');
+            const newRow = document.createElement('div');
+            newRow.classList.add('payment-row');
+            newRow.innerHTML = `
+                <h4>Payment Row ${rowCount + 1}</h4>
+                <label for="vendor_name_${rowCount}">Business/Vendor Name:</label>
+                <input type="text" id="vendor_name_${rowCount}" name="vendor_name_${rowCount}"><br><br>
+
+                <label for="contract_type_${rowCount}">Type of Contract or Agreement:</label>
+                <input type="text" id="contract_type_${rowCount}" name="contract_type_${rowCount}"><br><br>
+
+                <label for="original_amount_${rowCount}">Original Contract Amount ($):</label>
+                <input type="number" id="original_amount_${rowCount}" name="original_amount_${rowCount}" step="0.01"><br><br>
+
+                <label for="award_date_${rowCount}">Date of Award/Commitment:</label>
+                <input type="date" id="award_date_${rowCount}" name="award_date_${rowCount}"><br><br>
+
+                <label for="certified_dbe_${rowCount}">Certified DBE (Yes/No):</label>
+                <select id="certified_dbe_${rowCount}" name="certified_dbe_${rowCount}">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select><br><br>
+
+                <label for="paid_this_period_${rowCount}">Amount Paid this Period ($):</label>
+                <input type="number" id="paid_this_period_${rowCount}" name="paid_this_period_${rowCount}" step="0.01"><br><br>
+
+                <label for="paid_to_date_${rowCount}">Amount Paid to Date ($):</label>
+                <input type="number" id="paid_to_date_${rowCount}" name="paid_to_date_${rowCount}" step="0.01"><br><br>
+            `;
+            paymentRows.appendChild(newRow);
+            rowCount++;
+        });
+    </script>
+</body>
+</html>

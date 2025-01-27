@@ -1,0 +1,47 @@
+<!-- templates/reports.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports</title>
+</head>
+<body>
+    <h1>Submitted Reports</h1>
+    <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Project Number</th>
+                <th>Contractor Name</th>
+                <th>Contract Number</th>
+                <th>Award Date</th>
+                <th>Original Amount ($)</th>
+                <th>Revised Amount ($)</th>
+                <th>Committed DBE (%)</th>
+                <th>Report Date</th>
+                <th>Final Report</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <td>{{ report[0] }}</td>
+                <td>{{ report[1] }}</td>
+                <td>{{ report[2] }}</td>
+                <td>{{ report[3] }}</td>
+                <td>{{ report[4] }}</td>
+                <td>{{ report[5] }}</td>
+                <td>{{ report[6] }}</td>
+                <td>{{ report[7] }}</td>
+                <td>{{ report[8] }}</td>
+                <td>{{ report[9] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="/">Go Back to Home</a>
+</body>
+</html>
